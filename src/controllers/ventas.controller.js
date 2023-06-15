@@ -3,6 +3,11 @@ import { conn } from "../db.js";
 
 export const getAllOrders = async(req,res)=>{
     try {
+        res.setHeader("Access-Control-Allow-Origin", "*")
+        res.setHeader("Access-Control-Allow-Credentials", "true");
+        res.setHeader("Access-Control-Max-Age", "1800");
+        res.setHeader("Access-Control-Allow-Headers", "content-type");
+        res.setHeader( "Access-Control-Allow-Methods", "PUT, POST, GET, DELETE, PATCH, OPTIONS" );
         const [rows] = await conn.query('SELECT * FROM ventas');
         res.json(rows);
     } catch (error) {
